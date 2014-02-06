@@ -41,7 +41,7 @@ if !::File.exists?("#{full_path}")
 
   # Download IDEA archive
   remote_file archive_path do 
-    source 'http://download.jetbrains.com/idea/ideaIC-#{version}.tar.gz'
+    source "http://download.jetbrains.com/idea/ideaIC-#{version}.tar.gz"
     backup false
     user user
     group user
