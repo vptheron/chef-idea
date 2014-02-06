@@ -16,7 +16,7 @@ Requirements
 Attributes
 ----------
 
-* `node['idea']['setup_dir']` - Target directory for installation (e.g. `/home/john/tools). This cookbook *will* create `setup_dir` if it does not exist, however only the last directory on the path (in the previous example `tools`) will be owned by `user` (see below).
+* `node['idea']['setup_dir']` - Target directory for installation (e.g. `/home/john/tools`). This cookbook *will* create `setup_dir` if it does not exist, however only the last directory on the path (in the previous example `tools`) will be owned by `user` (see below).
 * `node['idea']['user']` - user and group owner of `setup_dir` and `target_dir`.
 * `node['idea']['version']` - the version of IntelliJ IDEA to install (default: `13.0.2`).
 * `node['idea']['target_dir']` - the IDE directory (default: `idea-IC-13`).
@@ -39,14 +39,14 @@ Note: the recipe will not do anything if `node['idea']['setup_dir']/node['idea']
 Contributing
 ------------
 
-* Source hosted at [GitHub][repo]
-* Report issues/Questions/Feature requests on [GitHub Issues][issues]
+* Source hosted at [GitHub](https://github.com/vptheron/chef-idea)
+* Report issues/Questions/Feature requests on [GitHub Issues](https://github.com/vptheron/chef-idea/issues)
 
 Pull requests are very welcome!
 
 License and Authors
 -------------------
-Author:: [Vincent Theron][vptheron] (<vptheron@gmail.com>)
+Author:: [Vincent Theron](https://github.com/vptheron) ([vptheron](mailto:vptheron@gmail.com))
 
 Contributors:: https://github.com/vptheron/chef-idea/contributors
 
