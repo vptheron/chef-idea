@@ -20,38 +20,30 @@
 include_recipe "java"
 
 user = node['idea']['user']
+group = node['idea']['group']
 setup_dir = node['idea']['setup_dir']
 
 version = node['idea']['version']
-target_dir = node['idea']['target_dir']
+ide_dir = node['idea']['ide_dir'] || 'idea-IC' + (version.split('.')[0])
 
-full_path = File.join(setup_dir, target_dir)
+full_path = File.join(setup_dir, ide_dir)
 archive_path = File.join(setup_dir, "idea.tar.gz")
 
 if !::File.exists?("#{full_path}")
-
-  # Create setup directory
-  directory setup_dir do
-    owner user
-    group user
-    mode 0755
-    action :create
-    recursive true
-  end
 
   # Download IDEA archive
   remote_file archive_path do 
     source "http://download.jetbrains.com/idea/ideaIC-#{version}.tar.gz"
     backup false
     user user
-    group user
+    group group
   end
 
   # Extract archive
   execute 'extract archive' do
     command "tar xf #{archive_path} -C #{setup_dir}/; mv #{setup_dir}/idea-IC-* #{full_path}"
     user user
-    group user
+    group group
     action :run
   end 
 
@@ -63,7 +55,7 @@ if !::File.exists?("#{full_path}")
       :xmx => node['idea']['64bits']['Xmx']
     )
     owner user
-    group user
+    group group
     mode 0664
     action :create
   end

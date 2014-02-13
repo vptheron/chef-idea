@@ -20,10 +20,6 @@
 #
 
 default['idea']['version'] = '13.0.2'
-default['idea']['target_dir'] = "idea-IC-13"
-
 default['idea']['64bits']['Xmx'] = '2048m'
 default['idea']['64bits']['Xms'] = '2048m'
 
-default['java']['install_flavor'] = "openjdk"
-default['java']['jdk_version'] = "7"
