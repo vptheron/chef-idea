@@ -24,7 +24,7 @@ group = node['idea']['group']
 setup_dir = node['idea']['setup_dir']
 
 version = node['idea']['version']
-ide_dir = node['idea']['ide_dir'] || 'idea-IC-' + (version.split('.')[0])
+ide_dir = node['idea']['ide_dir'] || 'idea-IC-' + version
 
 full_path = File.join(setup_dir, ide_dir)
 archive_path = File.join(setup_dir, "idea.tar.gz")
