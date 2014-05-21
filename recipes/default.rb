@@ -56,7 +56,7 @@ if !::File.exists?("#{full_path}")
     )
     owner user
     group group
-    mode 0664
+    mode 0644
     action :create
   end
 
