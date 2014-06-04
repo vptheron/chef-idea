@@ -17,38 +17,34 @@
 # limitations under the License.
 #
 
-include_recipe "java"
+include_recipe 'java'
 
 user = node['idea']['user']
-group = node['idea']['group']
-setup_dir = node['idea']['setup_dir']
+group = node['idea']['group'] || user
 
 version = node['idea']['version']
+
+setup_dir = node['idea']['setup_dir']
 ide_dir = node['idea']['ide_dir'] || 'idea-IC-' + version
 
-full_path = File.join(setup_dir, ide_dir)
-archive_path = File.join(setup_dir, "idea.tar.gz")
+install_path = File.join(setup_dir, ide_dir)
+archive_path = File.join("#{Chef::Config[:file_cache_path]}", "ideaIC-#{version}.tar.gz")
 
-if !::File.exists?("#{full_path}")
+if !::File.exists?("#{install_path}")
 
   # Download IDEA archive
   remote_file archive_path do 
     source "http://download.jetbrains.com/idea/ideaIC-#{version}.tar.gz"
-    backup false
-    user user
-    group group
   end
 
   # Extract archive
   execute 'extract archive' do
-    command "tar xf #{archive_path} -C #{setup_dir}/; mv #{setup_dir}/idea-IC-* #{full_path}"
-    user user
-    group group
+    command "tar xf #{archive_path} -C #{Chef::Config[:file_cache_path]}/; mv #{Chef::Config[:file_cache_path]}/idea-IC-* #{install_path}; chown -R #{user}:#{group} #{install_path}"
     action :run
   end 
 
   # vmoptions config
-  template "#{full_path}/bin/idea64.vmoptions" do
+  template File.join("#{install_path}", "bin", "idea64.vmoptions") do
     source "idea64.vmoptions.erb"
     variables(
       :xms => node['idea']['64bits']['Xms'],
