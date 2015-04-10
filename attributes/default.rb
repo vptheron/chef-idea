@@ -19,7 +19,7 @@
 # limitations under the License.
 #
 
-default['idea']['version'] = '13.1.3'
+default['idea']['version'] = '14.1.1'
 default['idea']['64bits']['Xmx'] = '2048m'
 default['idea']['64bits']['Xms'] = '2048m'
 
