@@ -4,7 +4,7 @@ This cookbook will install the community or ultimate edition of [IntelliJ IDEA](
 
 The **default** recipe will:
 
-* Download the IDE from JetBrains' website
+* Download the Community Edition of the IDE from JetBrains' website
 * Extract the archive
 * Configure the JVM options used to start the IDE
 
