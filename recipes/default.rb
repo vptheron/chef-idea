@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: idea
+# Cookbook Name:: idea-ultimate
 # Recipe:: default
 #
 # Copyright 2014, Vincent Theron
@@ -22,24 +22,25 @@ include_recipe 'java'
 user = node['idea']['user']
 group = node['idea']['group'] || user
 
+edition = node['idea']['edition']
 version = node['idea']['version']
 
 setup_dir = node['idea']['setup_dir']
-ide_dir = node['idea']['ide_dir'] || 'idea-IC-' + version
+ide_dir = node['idea']['ide_dir'] || "idea-I#{edition}-#{version}"
 
 install_path = File.join(setup_dir, ide_dir)
-archive_path = File.join("#{Chef::Config[:file_cache_path]}", "ideaIC-#{version}.tar.gz")
+archive_path = File.join("#{Chef::Config[:file_cache_path]}", "ideaI#{edition}-#{version}.tar.gz")
 
 if !::File.exists?("#{install_path}")
 
   # Download IDEA archive
   remote_file archive_path do 
-    source "http://download.jetbrains.com/idea/ideaIC-#{version}.tar.gz"
+    source "http://download.jetbrains.com/idea/ideaI#{edition}-#{version}.tar.gz"
   end
 
   # Extract archive
   execute 'extract archive' do
-    command "tar xf #{archive_path} -C #{Chef::Config[:file_cache_path]}/; mv #{Chef::Config[:file_cache_path]}/idea-IC-* #{install_path}; chown -R #{user}:#{group} #{install_path}"
+    command "tar xf #{archive_path} -C #{Chef::Config[:file_cache_path]}/; mv #{Chef::Config[:file_cache_path]}/idea-I#{edition}-* #{install_path}; chown -R #{user}:#{group} #{install_path}"
     action :run
   end 
 
