@@ -17,48 +17,39 @@
 # limitations under the License.
 #
 
-include_recipe 'java'
-
-user = node['idea']['user']
-group = node['idea']['group'] || user
+include_recipe "ark"
 
 version = node['idea']['version']
 
-setup_dir = node['idea']['setup_dir']
-ide_dir = node['idea']['ide_dir'] || 'idea-IC-' + version
+# Determine the path to the installer, based on the version of IDEA that is being requested.
+if node['idea']['url'].to_s.strip.length == 0
+  idea_url = "http://download.jetbrains.com/idea/ideaIC-#{version}.tar.gz"
+else
+  idea_url = node['idea']['url']
+end
 
-install_path = File.join(setup_dir, ide_dir)
-archive_path = File.join("#{Chef::Config[:file_cache_path]}", "ideaIC-#{version}.tar.gz")
+# Download the installer, unpack, and run.
+ark "idea" do
+  url idea_url
+  version version
+  extension "tar.gz"
+  has_binaries ['idea']
+  append_env_path true
+  action :install
+end
 
-if !::File.exists?("#{install_path}")
+# Override the values in the vmoptions file.
+template "/usr/local/idea/bin/idea64.vmoptions" do
+  source "idea64.vmoptions.erb"
+  variables(
+    :xms => node['idea']['64bits']['Xms'],
+    :xmx => node['idea']['64bits']['Xmx']
+  )
+  action :create
+end
 
-  # Download IDEA archive
-  remote_file archive_path do 
-    source "http://download.jetbrains.com/idea/ideaIC-#{version}.tar.gz"
-  end
-
-  # Extract archive
-  execute 'extract archive' do
-    command "tar xf #{archive_path} -C #{Chef::Config[:file_cache_path]}/; mv #{Chef::Config[:file_cache_path]}/idea-IC-* #{install_path}; chown -R #{user}:#{group} #{install_path}"
-    action :run
-  end 
-
-  # vmoptions config
-  template File.join("#{install_path}", "bin", "idea64.vmoptions") do
-    source "idea64.vmoptions.erb"
-    variables(
-      :xms => node['idea']['64bits']['Xms'],
-      :xmx => node['idea']['64bits']['Xmx']
-    )
-    owner user
-    group group
-    mode 0644
-    action :create
-  end
-
-  # Delete archive
-  file "#{archive_path}" do
-    action :delete
-  end
-
+# Creates an entry in the "Applications" listing, under "Programming".
+template "/usr/share/applications/idea.desktop" do
+  source "idea.desktop.erb"
+  action :create
 end

@@ -11,16 +11,12 @@ The **default** recipe will:
 Requirements
 ------------
 
-* Depends on **opscode/java** cookbook
+* Depends on **opscode/ark** cookbook
 
 Attributes
 ----------
 
-* `node['idea']['setup_dir']` - Target directory for installation. This cookbook does *not* create `setup_dir` if it does not exist.
-* `node['idea']['user']` - user owner of the installation.
-* `node['idea']['group']` - group owner of the installation (default to the same value as `user` if not specified).
-* `node['idea']['version']` - the version of IntelliJ IDEA to install (default: `14.1.1`).
-* `node['idea']['ide_dir']` - the name of the IDEA folder (default: `idea-IC-{version}`).
+* `node['idea']['version']` - the version of IntelliJ IDEA to install (default: `14.1.3`).
 * `node['idea']['64bits']['Xmx']` - specify the value of `-Xmx` in the 64bits configuration file (default: `2048m`).
 * `node['idea']['64bits']['Xms']` - specify the value of `-Xms` in the 64bits configuration file (default: `2048m`).
 
@@ -30,7 +26,7 @@ Usage
 
 Include `recipe[idea::default]` in your run_list and override the defaults you want changed.
 
-Note: the recipe will not do anything if `node['idea']['setup_dir']` already contains the chosen version of IntelliJ IDEA.
+Note: the recipe will not do anything if IntelliJ IDEA has already been installed and the cookbook has not changed.
 
 Contributing
 ------------
