@@ -19,7 +19,7 @@ Attributes
 * `node['idea']['setup_dir']` - Target directory for installation. This cookbook does *not* create `setup_dir` if it does not exist.
 * `node['idea']['user']` - user owner of the installation.
 * `node['idea']['group']` - group owner of the installation (default to the same value as `user` if not specified).
-* `node['idea']['edition']` - Target edition of IntelliJ IDEA to install. Defaults to `C` fpr Community edition. Other acceptable value: `U` for Ultimate.
+* `node['idea']['edition']` - Target edition of IntelliJ IDEA to install. Defaults to `C` for Community edition. Other acceptable value: `U` for Ultimate.
 * `node['idea']['version']` - the version of IntelliJ IDEA to install (default: `14.1.1`).
 * `node['idea']['ide_dir']` - the name of the IDEA folder (default: `idea-IC-{version}`).
 * `node['idea']['64bits']['Xmx']` - specify the value of `-Xmx` in the 64bits configuration file (default: `2048m`).
