@@ -20,8 +20,8 @@ Attributes
 * `node['idea']['user']` - user owner of the installation.
 * `node['idea']['group']` - group owner of the installation (default to the same value as `user` if not specified).
 * `node['idea']['edition']` - Target edition of IntelliJ IDEA to install. Defaults to `C` for Community edition. Other acceptable value: `U` for Ultimate.
-* `node['idea']['version']` - the version of IntelliJ IDEA to install (default: `14.1.1`).
-* `node['idea']['ide_dir']` - the name of the IDEA folder (default: `idea-IC-{version}`).
+* `node['idea']['version']` - the version of IntelliJ IDEA to install (default: `14.1.3`).
+* `node['idea']['ide_dir']` - the name of the IDEA folder (default: `ideaI{edition}-{version}`, e.g. if you install the default version of the Community Edition: `ideaIC-14.1.3`).
 * `node['idea']['64bits']['Xmx']` - specify the value of `-Xmx` in the 64bits configuration file (default: `2048m`).
 * `node['idea']['64bits']['Xms']` - specify the value of `-Xms` in the 64bits configuration file (default: `2048m`).
 
