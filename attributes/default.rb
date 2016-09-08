@@ -19,7 +19,7 @@
 # limitations under the License.
 #
 
-default['idea']['version'] = '14.1.4'
+default['idea']['version'] = '2016.2.3'
 default['idea']['edition'] = 'C'
 default['idea']['64bits']['Xmx'] = '2048m'
 default['idea']['64bits']['Xms'] = '2048m'
@@ -27,4 +27,4 @@ default['idea']['64bits']['Xms'] = '2048m'
 edition = node['idea']['edition']
 version = node['idea']['version']
 
-default['idea']['url'] = "http://download.jetbrains.com/idea/ideaI#{edition}-#{version}.tar.gz"
+default['idea']['url'] = "https://download-cf.jetbrains.com/idea/ideaI#{edition}-#{version}.tar.gz"
