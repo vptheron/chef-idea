@@ -25,6 +25,8 @@ group = node['idea']['group'] || user
 edition = node['idea']['edition']
 version = node['idea']['version']
 
+url = node['idea']['url']
+
 setup_dir = node['idea']['setup_dir']
 ide_dir = node['idea']['ide_dir'] || "idea-I#{edition}-#{version}"
 
@@ -35,7 +37,7 @@ if !::File.exists?("#{install_path}")
 
   # Download IDEA archive
   remote_file archive_path do 
-    source "http://download.jetbrains.com/idea/ideaI#{edition}-#{version}.tar.gz"
+    source url
   end
 
   # Extract archive
