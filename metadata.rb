@@ -4,7 +4,7 @@ maintainer_email 'vptheron@gmail.com'
 license          'Apache 2.0'
 description      'Installs and configures IntelliJ IDEA'
 long_description 'Please refer to README.md'
-version          '0.4.0'
+version          '0.5.0'
 
 recipe 'idea', 'Downloads, installs and configures IntelliJ IDEA.'
 
