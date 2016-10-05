@@ -33,6 +33,7 @@ ark 'idea' do
   has_binaries ['idea.sh']
   append_env_path true
   prefix_root setup_dir
+  prefix_home setup_dir
   owner node['idea']['user'] unless node['idea']['user'].nil?
   group node['idea']['group'] unless node['idea']['group'].nil?
   action :install
@@ -62,8 +63,8 @@ full_edition =
 template '/usr/share/applications/idea.desktop' do
   source 'idea.desktop.erb'
   variables(
-    setup_dir,
-    full_edition
+    setup_dir: setup_dir,
+    full_edition: full_edition
   )
   action :create
 end
