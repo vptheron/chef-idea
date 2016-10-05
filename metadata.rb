@@ -9,6 +9,7 @@ version          '0.6.0-SNAPSHOT'
 recipe 'default', 'Downloads, installs and configures IntelliJ IDEA.'
 
 depends 'java'
+depends 'ark'
 
 source_url 'https://github.com/vptheron/chef-idea' if respond_to?(:source_url)
 issues_url 'https://github.com/vptheron/chef-idea/issues' if respond_to?(:issues_url)
