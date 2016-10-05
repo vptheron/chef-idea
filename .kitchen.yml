@@ -1,0 +1,25 @@
+---
+driver:
+  name: vagrant
+  customize:
+    cpus: 2
+    memory: 4096
+
+provisioner:
+  name: chef_solo
+  require_chef_omnibus: true
+
+platforms:
+  - name: centos-6.7
+
+suites:
+  - name: community
+    run_list:
+      - recipe[java::default]
+      - recipe[idea::default]
+    attributes: { idea: { edition: 'C' } }
+  - name: ultimate 
+    run_list:
+      - recipe[java::default]
+      - recipe[idea::default]
+    attributes: { idea: { edition: 'U' } }
