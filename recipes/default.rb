@@ -64,4 +64,12 @@ unless ::File.exist?(install_path)
     action :delete
   end
 
+# .desktop entry
+template '/usr/share/applications/idea.desktop' do
+  source 'idea.desktop.erb'
+  variables(
+    setup_dir,
+    edition
+  )
+  action :create
 end
