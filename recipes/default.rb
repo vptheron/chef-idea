@@ -63,6 +63,7 @@ unless ::File.exist?(install_path)
   file archive_path do
     action :delete
   end
+end
 
 # .desktop entry
 template '/usr/share/applications/idea.desktop' do
