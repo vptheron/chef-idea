@@ -65,12 +65,19 @@ unless ::File.exist?(install_path)
   end
 end
 
+full_edition =
+  if node['idea']['edition'] == 'U'
+    'Ultimate'
+  else
+    'Community'
+  end
+
 # .desktop entry
 template '/usr/share/applications/idea.desktop' do
   source 'idea.desktop.erb'
   variables(
     setup_dir,
-    edition
+    full_edition
   )
   action :create
 end
