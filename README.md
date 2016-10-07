@@ -1,5 +1,8 @@
 idea Cookbook
 =============
+
+[![Build Status](https://travis-ci.org/vptheron/chef-idea.svg?branch=master)](https://travis-ci.org/vptheron/chef-idea)
+
 This cookbook will install the community or ultimate edition of [IntelliJ IDEA](http://www.jetbrains.com/idea/).
 
 The **default** recipe will:
