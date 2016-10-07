@@ -1,0 +1,6 @@
+language: ruby
+rvm: 2.1.4
+cache: bundler
+sudo: false
+bundler_args: --jobs 7 --without docs integration
+script: bundle exec rake
