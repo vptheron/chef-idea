@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe 'idea::default' do
-  context 'using version 2016.2.3 and setup_dir /opt' do
+  context 'using version 2016.2.4 and setup_dir /opt' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(platform: 'centos', version: 6.6) do |node|
-        node.default['idea']['version'] = '2016.2.3'
+        node.override['idea']['version'] = '2016.2.4'
         node.default['idea']['setup_dir'] = '/opt'
       end.converge(described_recipe)
     end
@@ -17,8 +17,8 @@ describe 'idea::default' do
       expect(chef_run).to install_ark('idea')
     end
 
-    it 'creates /opt/idea-2016.2.3/bin/idea64.vmoptions' do
-      expect(chef_run).to create_template('/opt/idea-2016.2.3/bin/idea64.vmoptions')
+    it 'creates /opt/idea-2016.2.4/bin/idea64.vmoptions' do
+      expect(chef_run).to create_template('/opt/idea-2016.2.4/bin/idea64.vmoptions')
     end
   end
 end
