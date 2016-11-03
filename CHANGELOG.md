@@ -1,13 +1,11 @@
 idea CHANGELOG
 ==============
 
-This file is used to list changes made in each version of the idea cookbook.
-
-0.1.0
+0.6.0
 -----
-- [your_name] - Initial release of idea
+- Rewrite IDEA installation ( Issues: #2 #8 #9 #10 #11 #12 )
+- Minor style fixes ( Issue: #7 )
+- Add cookbook testing framework ( Issue: #13 )
+- Update default version to latest ( Issues: #14 #15 )
 
-- - -
-Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
-
-The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
+Changes for versions prior to 0.6.0 can be obtained via [GitHub](https://github.com/vptheron/chef-idea/releases)
