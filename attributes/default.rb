@@ -19,12 +19,21 @@
 # limitations under the License.
 #
 
-default['idea']['version'] = '2016.2.5'
-default['idea']['edition'] = 'C'
 default['idea']['64bits']['Xmx'] = '2048m'
 default['idea']['64bits']['Xms'] = '2048m'
 
-edition = node['idea']['edition']
-version = node['idea']['version']
-
-default['idea']['url'] = "https://download-cf.jetbrains.com/idea/ideaI#{edition}-#{version}.tar.gz"
+case node['platform_family']
+when 'windows'
+  default['idea']['url'] = "https://download-cf.jetbrains.com/idea/ideaIU-2016.3.5.exe"
+  default['idea']['sha256'] = "3D657662526E427E1FC472DB06C1ED223BCF8C3434C0BA90DFA4554465B2D376"
+  default['idea']['packagename'] = "Idea IntelliJ 2016.3.5"
+  #default['java']['windows']['url'] = 'file:///c:/Installers/Java/jdk-8u51-windows-x64.exe'
+  #default['java']['windows']['checksum'] = 'F01FD26E6C0936A0F928385C61046D6F97EB32C79BF1EC7C11F105BA8147BE87'
+  default['java']['windows']['package_name'] = 'Java(TM) SE Development Kit 8 (64-bit)'
+else
+  default['idea']['edition'] = 'C'
+  default['idea']['version'] = '2016.2.5'
+  edition = node['idea']['edition']
+  version = node['idea']['version']
+  default['idea']['url'] = "https://download-cf.jetbrains.com/idea/ideaI#{edition}-#{version}.tar.gz"
+end 

@@ -1,6 +1,8 @@
 ---
 driver:
   name: vagrant
+  synced_folders: 
+    - ["C:/Installers/Java", "c:/Installers/Java"]
   customize:
     cpus: 2
     memory: 4096
@@ -8,18 +10,47 @@ driver:
 provisioner:
   name: chef_solo
   require_chef_omnibus: true
-
+  
+verifier:
+  name: inspec
+#sbrumley/windows10
+#williamtsoi/windows_10
 platforms:
-  - name: centos-6.7
-
+  - name: centos-6.7    
+  - name: windows-10
+    driver:
+      box: win10
+    os_type: windows
+    shell_type: powershell
+    transport:
+        name: winrm    
+  
 suites:
   - name: community
     run_list:
       - recipe[java::default]
       - recipe[idea::default]
     attributes: { idea: { edition: 'C' } }
+    excludes:
+      - windows-10
   - name: ultimate 
     run_list:
       - recipe[java::default]
       - recipe[idea::default]
     attributes: { idea: { edition: 'U' } }
+    excludes:
+      - windows-10
+  - name: ultimate-Win
+    run_list:
+      - recipe[java::windows]
+      - recipe[idea::windows]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes: 
+        java:
+          windows:
+            url: file:///c:/Installers/Java/jdk-8u51-windows-x64.exe
+            checksum: F01FD26E6C0936A0F928385C61046D6F97EB32C79BF1EC7C11F105BA8147BE87
+    excludes:
+      - centos-6.7
