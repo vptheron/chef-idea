@@ -12,10 +12,19 @@ The **default** recipe will:
 * Configure the JVM options used to start the IDE
 * Create a Freedesktop Desktop Specification entry
 
+The **windows** recipe will: 
+* Download the Windows Installer for IDEA
+* Installs the Package
+
 Requirements
 ------------
 
 * Depends on **opscode/java** and **opscode/ark** cookbooks
+
+Platforms 
+------------
+* centos-6.7
+* windows-10
 
 Attributes
 ----------
@@ -26,16 +35,25 @@ Attributes
 * `node['idea']['edition']` - Target edition of IntelliJ IDEA to install. Defaults to `C` for Community edition. Other acceptable value: `U` for Ultimate.
 * `node['idea']['version']` - the version of IntelliJ IDEA to install (default: `2016.2.5`).
 * `node['idea']['url']` - Download URL for IntelliJ IDEA (default: `https://download-cf.jetbrains.com/idea/ideaI#{edition}-#{version}.tar.gz`).
+* `node['idea']['sha256']` - (Windows Only) Checksum of the installer
+* `node['idea']['packagename']`= "Idea IntelliJ 2016.3.5" - (Windows Only) The package name of IDEA 
 * `node['idea']['64bits']['Xmx']` - specify the value of `-Xmx` in the 64bits configuration file (default: `2048m`).
 * `node['idea']['64bits']['Xms']` - specify the value of `-Xms` in the 64bits configuration file (default: `2048m`).
 
 Usage
 -----
+**Linux**
 #### idea::default
 
 Include `recipe[idea::default]` in your run_list and override the defaults you want changed.
 
 Note: the recipe will not do anything if `node['idea']['setup_dir']` already contains the chosen version of IntelliJ IDEA.
+
+**Windows**
+#### idea::windows
+Include `recipe[idea::windows]` in your run_list and override the defaults you want changed.
+
+Note: In order to test this you will need to create your own Windows 10 vagrant box. I tested this using a vagrant box based off of [this repo](https://github.com/joefitzgerald/packer-windows.git)
 
 Contributing
 ------------

@@ -6,6 +6,9 @@ description      'Installs and configures IntelliJ IDEA'
 long_description 'Please refer to README.md'
 version          '0.7.0-SNAPSHOT'
 
+supports 'Windows', '10'
+supports 'centos', '6.7'
+
 recipe 'idea::default', 'Downloads, installs and configures IntelliJ IDEA.'
 
 depends 'java'
